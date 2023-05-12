@@ -31,6 +31,7 @@ include(modulePrefix + platformPrefix + "velocity")
 include(modulePrefix + platformPrefix + "bungee")
 include(modulePrefix + platformPrefix + "fabric")
 include(modulePrefix + platformPrefix + "forge-1.18.2")
+include(modulePrefix + platformPrefix + "forge-1.19.2")
 
 include(modulePrefix + driverPrefix + "influx")
 include(modulePrefix + driverPrefix + "prometheus")
@@ -46,6 +47,7 @@ project(modulePrefix + platformPrefix + "velocity").projectDir = File(platformsD
 project(modulePrefix + platformPrefix + "bungee").projectDir = File(platformsDir, "bungee")
 project(modulePrefix + platformPrefix + "fabric").projectDir = File(platformsDir, "fabric")
 project(modulePrefix + platformPrefix + "forge-1.18.2").projectDir = File(platformsDir, "forge-1.18.2")
+project(modulePrefix + platformPrefix + "forge-1.19.2").projectDir = File(platformsDir, "forge-1.19.2")
 
 val driversDir = File(rootDir, "drivers")
 project(modulePrefix + driverPrefix + "influx").projectDir = File(driversDir, "influx")
