@@ -18,7 +18,7 @@
 plugins {
     id("net.kyori.blossom")
     id("com.github.johnrengelman.shadow")
-    id("dev.architectury.loom") version "1.1.324"
+    id("dev.architectury.loom") version "1.2.338"
 }
 
 java {
@@ -75,7 +75,7 @@ dependencies {
 
 tasks {
     compileKotlin {
-        kotlinOptions.jvmTarget = "17"
+        kotlinOptions.jvmTarget = "19"
     }
 
     remapJar {
@@ -121,7 +121,7 @@ tasks {
 
     compileJava {
         options.encoding = "UTF-8"
-        options.release.set(17)
+        options.release.set(19)
     }
 
     assemble {
