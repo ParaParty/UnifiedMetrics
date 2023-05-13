@@ -16,7 +16,7 @@
  */
 
 plugins {
-    id("fabric-loom") version "1.0.16"
+    id("fabric-loom") version "1.2.5"
     id("net.kyori.blossom")
 }
 
@@ -30,10 +30,10 @@ dependencies {
     // https://fabricmc.net/versions.html
     minecraft("com.mojang:minecraft:1.17.1")
     mappings("net.fabricmc:yarn:1.17.1+build.65:v2")
-    modImplementation("net.fabricmc:fabric-loader:0.14.12")
+    modImplementation("net.fabricmc:fabric-loader:0.14.19")
 
     modImplementation("net.fabricmc.fabric-api:fabric-api:0.46.1+1.17")
-    modImplementation("net.fabricmc:fabric-language-kotlin:1.9.0+kotlin.1.8.0")
+    modImplementation("net.fabricmc:fabric-language-kotlin:1.9.4+kotlin.1.8.21")
 
     api(project(":unifiedmetrics-core"))
 
@@ -59,9 +59,8 @@ loom {
 
 tasks {
     compileKotlin {
-        kotlinOptions.jvmTarget = "1.8"
+        kotlinOptions.jvmTarget = "16"
     }
-
     processResources {
         inputs.property("version", project.version)
 
@@ -72,8 +71,12 @@ tasks {
 
     compileJava {
         options.encoding = "UTF-8"
-        options.release.set(8)
     }
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_16
+    targetCompatibility = JavaVersion.VERSION_16
 }
 
 blossom {

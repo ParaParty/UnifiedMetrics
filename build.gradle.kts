@@ -15,20 +15,21 @@
  *     along with UnifiedMetrics.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.8.0" apply false
-    kotlin("kapt") version "1.8.0" apply false
-    kotlin("plugin.serialization") version "1.8.0" apply false
-    id("com.github.johnrengelman.shadow") version "7.1.2" apply false
+    kotlin("jvm") version "1.8.21" apply false
+    kotlin("kapt") version "1.8.21" apply false
+    kotlin("plugin.serialization") version "1.8.21" apply false
+    id("com.github.johnrengelman.shadow") version "8.1.1" apply false
     id("net.kyori.blossom") version "1.3.1" apply false
 }
 
 allprojects {
     group = "dev.cubxity.plugins"
     description = "Fully featured metrics collector agent for Minecraft servers."
-    version = "0.3.8-SNAPSHOT"
+    version = "0.3.8"
 
     repositories {
         mavenCentral()
@@ -43,7 +44,7 @@ subprojects {
 
     tasks.withType<KotlinCompile> {
         kotlinOptions {
-            jvmTarget = "1.8"
+            kotlinOptions.jvmTarget = "1.8"
             freeCompilerArgs = listOf("-opt-in=kotlin.RequiresOptIn")
         }
     }
@@ -67,11 +68,12 @@ subprojects {
         }
     }
     afterEvaluate {
-        tasks.findByName("shadowJar")?.also {
-            tasks.named("assemble") { dependsOn(it) }
-        }
         configure<SigningExtension> {
             sign(configurations["archives"])
+        }
+        tasks.findByName("shadowJar")?.also {
+            tasks.named("assemble") { dependsOn(it) }
+            tasks.named("signArchives") { dependsOn(it) }
         }
     }
 }
